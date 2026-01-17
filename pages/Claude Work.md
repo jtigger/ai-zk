@@ -1,2 +1,4 @@
 - https://claude.com/resources/tutorials/claude-cowork-a-research-preview
+- First impressions of Claude Cowork, Anthropic’s general agent (Article)
+	- https://simonwillison.net/2026/Jan/12/claude-cowork/
 -

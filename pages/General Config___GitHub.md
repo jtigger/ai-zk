@@ -1,0 +1,6 @@
+-
+- # Setup
+	- Claude Code itself is baked to use `gh` CLI
+		-
+	- Install the `gh` CLI
+	-

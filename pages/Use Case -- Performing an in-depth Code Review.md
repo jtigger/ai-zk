@@ -1,0 +1,7 @@
+-
+- # Setup
+	- Consider including the key sources of context:
+		- Shortcut (via MCP)
+		- Slack (via MCP)
+		- GitHub (via `gh` CLI?)
+-

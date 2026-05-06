@@ -1,0 +1,6 @@
+- https://github.com/mattpocock/skills
+	- Repo with the skills
+- https://www.youtube.com/watch?v=v4F1gFy-hqg
+	- The talk I heard him give a why-based presentation of the skills
+- https://www.aihero.dev/
+	- Matt's developer homepage

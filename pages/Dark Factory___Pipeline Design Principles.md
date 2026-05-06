@@ -1,0 +1,92 @@
+## My Notes from `start-here.md`
+	- https://github.com/mechanical-orchard/moab/blob/0441c3c274f260e6a2114ee954426be8bbdf03b6/docs/start-here.md
+	- logseq://graph/imogen-zk?page=MOAB%2FDesigning%20Pipelines
+	-
+	- ### Raw
+		- Writing a pipeline is giving navigation tools to the agent crew
+			- over directing them exactly how to get there.
+	- ## Principles
+		- ### 1.  A pipeline is a factory line
+			- A pipeline describes all the archetype parts
+			- It's MOAB when to spawn multiple instances of a given node
+			- Each node is a well-defined task
+			- #### Rationale
+				- Minimize the risk of individual agent failure by keeping tasks narrowly scoped
+					- task too complex, agent...
+						- exhausts context window
+						- spreads attention too thin across to many concerns, weakening verifying intermediate results
+					- which leads to
+						- produces shallow results
+						- outright fails
+					-
+		- ### 2. Validation loops are non-negotiable
+			- Agents have a tendency to "cheat" by steering toward solving for making checks pass.
+			- To avoid this class of failure states, define an independent validation step that all it does is check the previous step's output against a rubric
+			- #### Rationale
+				- AI agents optimize
+				- When the agent controls both the work and its validation, the validation stops being meaningful
+					- [[Goodhart's Law]]
+					- akin to "teaching to the test"
+		- ### 3. Agents are your workers
+			- Describe outcomes, not step-by-step processes
+			- If you need a series of command to occur deterministically, get that script written and tell the agent to run it.
+			- #### Rationale
+				- Agents bring _adaptive reasoning_ (i.e. flexible conditionals, depending on circumstances)
+				- attempting to force reasoning reduces the value-add of agents and introduces fagility
+		- ### 4. No human gates
+			- A "factory" is made up only of AI Agents.
+			- The human's responsibilities are to
+				- design the factory
+				- vet the output
+			- #### Rationale
+				- If a human must intervene, the factory
+					- isn't autonomous (a key value of the factory)
+					- can't scale
+				- The need for human intervention is a signal that
+					- the spec might lack precision (missing key decision point)
+						- augment the spec with whatever judgment is actually required
+					- a validation loop is either weak or missing
+		- ### 5. A pipeline is a conversation flow
+			- The pipeline should only handle flow: who runs after whom and given what conditions (in general terms of a prior outcome)
+			- Do not let "business logic" related to doing the work become part of the pipeline definition.
+			- The DOT choice was specific, it _describes_ flow in terms of nodes and edges
+				- rather than programming
+				- (This makes me think of an instance of a pipeline as like a state machine where the "state" are the operations values of the factory)
+			- #### Rationale
+				- Separate routing from reasoning
+					- Routing is the decision of given a higher level outcome (success, failure, error, (gradients between?)), what step to take next
+					- Reasoning is how to understand the current situation and decide how to respond to it.
+		- ### 6. Agents don't share memory
+			- Agents are entirely encapsulated where the files, reports, documents, and code are intended to be interfaces and contracts.
+			- #### Rationale
+				- In practice, pipelines need to be auditable/observable, recoverable, and debuggable.
+				- Keeping the meaningful state in and about the work itself tends towards pipelines that have those qualities
+					- if the agent only relies on the inputs for its step,
+						- it can repeat that step more reliably
+						- one need only consider the work input artifacts and the logic within the step to reason about what's happening
+				- To avoid this...
+					- Consider each input like a contract/interface: ensure each input is present, well-formed, and valid (not empty, sensible considering the other inputs).
+					- Instruct agents to clear their workspace prior to starting
+						- include a `clean.sh` script that safely deletes prior outputs
+					- Ensure Agents can only communicate with each other through these interfaces.
+						- and not additional files or data stores (db, vcs, cache, ...) they both might have access to.
+					- Isolate parallel work through namespacing
+	- ## Writing a Pipeline
+		- ### 1. Define a Spec
+			- Spec : a document that describes what is to be produced and how to verify that what was produced is "good."
+				- Good Spec
+					- "Seed" : enumerates source materials and references
+					- "Harness" : enumerates tests, reference outputs, acceptance criteria
+		- ### 2. Convert the spec to a pipeline
+			- Use the `/create-pipeline` skill
+			- Collaborate with the skill
+				- You know about your project
+				- It "knows" about `moab`'s patterns
+		- ### 3. Adjust the pipeline
+			- Run `moab viz`, browser to http://localhost:3000 and go to the "View" tab...
+	- ## Pipeline Patterns
+		- ### To increase confidence in a validation, form a Validation Committee
+			- three (3) or more Validation Agents with the same instructions run in parallel against the same inputs.
+			- one Consolidation Agent with clear instructions on how to interpret the results (effectively for a point to pass, all Validation Agents must agree)
+		- ### To increase durability in the face of likely failure, add an explicit Success Validation
+			- Allow an Agent to report success or failure (don't )

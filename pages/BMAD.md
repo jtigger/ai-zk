@@ -1,0 +1,4 @@
+- Build More Architect Dreams
+- https://docs.bmad-method.org/
+	- > The BMad Method (**B**uild **M**ore **A**rchitect **D**reams) is an AI-driven development framework module within the BMad Method Ecosystem that helps you build software through the whole process from ideation and planning all the way through agentic implementation. It provides specialized AI agents, guided workflows, and intelligent planning that adapts to your project’s complexity, whether you’re fixing a bug or building an enterprise platform.
+-

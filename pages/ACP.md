@@ -1,0 +1,15 @@
+- Agent Client Protocol
+- an open standard for communication between code editors/IDEs and AI coding agents — essentially "LSP for AI coding agents."
+- ## How it works:
+	- Local agents run as subprocesses of the editor, communicating via JSON-RPC over stdio
+	- Standardizes things like context @-mentions, tool calls, edit review, file diffs, slash commands, MCP servers
+	- The @agentclientprotocol/claude-agent-acp package specifically wraps the Claude Agent SDK to make Claude speak ACP — so any ACP-compatible editor (Zed, JetBrains, etc.) can use Claude as its coding agent without custom integration work.
+- ## Ecosystem (as of early 2026):
+	- Originated at Zed, now community-governed under Apache License
+	- JetBrains partnered to bring it to IntelliJ, PyCharm, WebStorm
+	- GitHub Copilot CLI added support in Jan 2026
+- ## Sources
+	- [agent-client-protocol GitHub](https://github.com/agentclientprotocol/agent-client-protocol)
+	- [Introduction - agentclientprotocol.com](https://agentclientprotocol.com/get-started/introduction)
+	- [@agentclientprotocol/claude-agent-acp on npm](https://www.npmjs.com/package/@agentclientprotocol/claude-agent-acp)
+	- [ACP: The LSP for AI Coding Agents - PromptLayer](https://blog.promptlayer.com/agent-client-protocol-the-lsp-for-ai-coding-agents/)

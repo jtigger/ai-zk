@@ -1,0 +1,6 @@
+- when a measure becomes a target, it ceases to be a good measure
+- ## Mitigating
+	- **Use multiple, balanced metrics** rather than relying on a single indicator.
+	- **Focus on the long-term, true goal** rather than short-term proxy metrics.
+	- **Be vigilant for "gaming"**—monitor if the indicator is rising while the actual situation deteriorates (e.g., the "Cobra Effect" https://en.wikipedia.org/wiki/Perverse_incentive).
+	- **Use qualitative data** to complement quantitative measures

@@ -1,0 +1,4 @@
+- Get Shit Done — a "light-weight" spec-driven development tool
+- https://github.com/gsd-build/get-shit-done
+	- > Other spec-driven development tools exist; BMAD, Speckit... But they all seem to make things way more complicated than they need to be (sprint ceremonies, story points, stakeholder syncs, retrospectives, Jira workflows) or lack real big picture understanding of what you're building. I'm not a 50-person software company. I don't want to play enterprise theater. I'm just a creative person trying to build great things that work.
+-

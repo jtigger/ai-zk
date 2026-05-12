@@ -1,0 +1,84 @@
+-
+- ## Technologies
+	- [[OSX/Seatbelt]]
+- # Threat Model
+	- ## Summary
+		- Anyone who can write text the agent will read
+			- → can potentially issue instructions the agent will follow
+				- → with whatever capabilities you granted the agent
+		- That single chain collapses what used to be three separate actor categories (the prompt author, the data author, the system operator) into one capability class for any successful injection.
+		- When you get to the threats step, expect a disproportionate number of them to start with "a context injector causes the agent to..."
+		- and your mitigations will mostly be about
+			- limiting what reaches context
+			  logseq.order-list-type:: number
+			- limiting what the agent can do regardless of what it's told, and
+			  logseq.order-list-type:: number
+			- keeping the human in the loop on irreversible actions.
+			  logseq.order-list-type:: number
+	- ## Assets
+		- i.e. what's being protected
+		- ### Sensitive data
+			- passwords, SSH keys, API tokens, private certificates, IP addresses
+			- #### Plain-text sensitive data
+				- environment variables (i.e. in memory)
+				- configuration files that contain sensitive values
+					- `${HOME}/.config/` and similar
+					- `${HOME}/Downloads/`
+					- `${REPO_ROOT}/.local/` and friends
+			- #### Encrypted sensitive data
+				- 1Password vaults to which a process is authenticated
+				- GitHub workflow Secrets (i.e. set in the repo by an admin)
+		- ### Source code
+			- Integrity — being trustable software (i.e. free of malicious code) using only approved dependencies (via acceptable licensing)
+			- Auditability — being able to reliably determine who added what behavior
+		- ### System time
+		- ### Git history
+		- ###
+	- ## Actors
+		- i.e. who threatens assets; their capabilities
+		- ### Programmer (me)
+		- ### AI Agent
+			- e.g. Claude Code using an Anthropic LLM
+			- makes a mistake
+			- is manipulated
+			- takes an approach misaligned with the user's intent (either means or ends)
+			- gets access to user's authority (via resource access and/or sensitive data)
+		- ### Context Injectors
+			- a pseudo user by means of including prompt text to the LLM
+			- #### Skills author
+			  collapsed:: true
+				- someone who contributes to an installed agent Skill
+			- #### Text content authors
+			  collapsed:: true
+				- README.md — Any dependency increasingly likely brings along with it text that's read into context.
+				- a fetched webpage (especially those that specifically contain text designed to work as a prompt)
+				- API responses from tooling Agent uses
+				- Issues/PRs/Email/Slack
+				- names of files inside a directly the agent lists (?)
+		- ### Supply-chain
+			- #### MCP server / tool / plugin authors
+			- #### Model Providers
+			- #### Package maintainers
+				- i.e. those who work on the software that is installed via an Agent session.
+				- Using Agents tends to increase the rate at which new dependencies enter the system
+			- #### Attackers
+				- typosquaters
+				- maintainer account hijackers
+				- malicious PRs/updates
+		-
+			-
+			-
+			- ####
+			-
+	- ## Use Cases
+		-
+	- ## Trust Boundaries
+		- i.e. subset of system boundaries that form trust domains
+		-
+	- ## Threats
+		- i.e. potential risks (probability x impact)
+		- ### Claude follows a prompt onjection and does something dumb in my repo
+		- ### Claude executes a tool that exfiltrates data over the network
+		- ### Claude installs software/package that turns out to be malicious
+	- ## Mitigations
+		- i.e. set of measures taken to mitigate threats

@@ -1,2 +1,3 @@
-- https://github.com/steveyegge/beads
+- https://github.com/gastownhall/beads
+- > **Distributed graph issue tracker for AI agents, powered by [Dolt](https://github.com/dolthub/dolt).**
 -
